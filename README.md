@@ -12,7 +12,7 @@ Works on PC/Mac or Raspberry Pi
 Raspberry Pi specific parts list:
 * Heartbeat sensor (http://pulsesensor.com, analog input)
 * Grove expansion shield (https://www.dexterindustries.com/grovepi/, I2C)
-* Pimoroni Blinkt (https://shop.pimoroni.com/products/blinkt, I2C)
+* Pimoroni Blinkt (https://shop.pimoroni.com/products/blinkt, SPI) - equivalent to 1 of Tenere's leaves
 * Grove accelerometer (http://wiki.seeed.cc/Grove-3-Axis_Digital_Accelerometer-16g/, I2C)
 * Grove oled display (http://wiki.seeed.cc/Grove-OLED_Display_0.96inch/, I2C)
 * Grove I2C Hub (http://wiki.seeed.cc/Grove-I2C_Hub/)
@@ -27,7 +27,7 @@ The following outlines the installation process for a Raspberry Pi 3 using the l
 
 * Start by following the installation instructions for downloading and writing the raspian image to a SD Card: https://www.raspberrypi.org/documentation/installation/installing-images/
 * The Raspian Jessie with Deskop image has been tested: https://www.raspberrypi.org/downloads/raspbian/
-* For Tenere, we suggest first configuring various options (turn on I2C, set locale, keyboard layout, setup network, etc.).  Please follow the relevant guides here: https://www.raspberrypi.org/documentation/configuration/
+* For Tenere, we suggest first configuring various options.  Be sure to turn on I2C, SPI, set your locale, keyboard layout, setup network, etc.  Please follow the relevant guides here: https://www.raspberrypi.org/documentation/configuration/
 * Don't forget to change the default password to something more secure (use the `raspi-conf` tool)!!!
 * Now, update all of the base packages and restart:
 
@@ -41,6 +41,7 @@ sudo shutdown -r now
 
 From your home directory (`/home/pi`), let's create a directory to hold all of our software:
 ```
+cd
 mkdir SOFTWARE
 cd SOFTWARE
 ```
@@ -78,11 +79,14 @@ cd library
 sudo python setup.py install
 ```
 
-* Install relevant libraries for the Grove Pi expansion board
+* Install relevant libraries for the Grove Pi expansion board (https://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/)
 ```
 sudo apt-get -y install libi2c-dev python-serial i2c-tools python-smbus python3-smbus arduino minicom
 cd ~/SOFTWARE
 git clone https://github.com/DexterInd/GrovePi.git
+cd GrovePi/Script
+sudo chmod +x install.sh
+sudo ./install.sh
 ```
 
 ## Voice control with Jasper
@@ -94,7 +98,7 @@ Please follow the instructions at https://github.com/treeoftenere/Interactivity/
 
 ## Muse headband 
 
-* For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 version:
+* For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 (or later) versions:
 ```
 sudo apt-get -y install python-liblo python-matplotlib python-numpy python-scipy python3-scipi python-seaborn liblo-tools
 sudo pip install pygatt 
