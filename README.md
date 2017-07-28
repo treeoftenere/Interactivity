@@ -1,11 +1,11 @@
-# Interactivity and Sensor/Effector integration with the Tree of Tenere
-A set of scripts to integrate sensor/actuator data with LXStudio over OSC
+# Interactivity and Sensor/Effector integration 
+A set of scripts to integrate sensor/actuator data with LXStudio over OSC for controlling the Tree of Tenere
 
 
 This project aims to provide a reference system and suite of sensor integrations for TENERE,  written mostly in Python.  The initial platform involves the use of a Raspberry Pi (3 model B - tested) to receive streaming raw data from various sensors, including:
 
 Works on PC/Mac or Raspberry Pi
-* Muse headband (choosemuse.com, Bluetooth LE)
+* Muse headband (https://choosemuse.com, Bluetooth LE)
 * USB microphone
 
 
@@ -151,14 +151,8 @@ Congratulations, you are now controlling Tenere with your brainwaves!!!!
 
 ## Voice control with Jasper
 
-* For setting up Voice Control, here are some of the prerequisites:
 ```
-sudo apt-get -y install libasound2 libasound2-dev libportaudio-dev python-pyaudio libyaml-dev
-sudo apt-get -y install pocketsphinx python-pocketsphinx libfst-tools
-sudo apt-get -y install cvs subversion autoconf libtool automake gfortran g++ autoconf-archive
-sudo apt-get -y install alsa-tools alsa-oss flex libc-bin libc-dev-bin python-pexpect 
-sudo apt-get -y install zlib1g-dev flex libesd0-dev libsndfile1-dev
-sudo apt-get -y install espeak libmad0-dev libfftw3-dev
-sudo apt-get remove pulseaudio
-sudo apt-get autoremove
+cd ~/SOFTWARE/Interactivity/voicecontrol
 ```
+
+Please follow the instructions at https://github.com/treeoftenere/Interactivity/voicecontrol
