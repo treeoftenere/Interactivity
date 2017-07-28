@@ -51,7 +51,7 @@ pi@raspberrypi:~/SOFTWARE $ ls
 GrovePI
 grovepi-zero
 liblsl
-muse-sock
+Interactivity
 Pimoroni
 Tenere
 pi@raspberrypi:~/SOFTWARE $
@@ -133,14 +133,14 @@ Then clone the lastest version of LXStudio (see more at: https://github.com/tree
 git clone https://github.com/treeoftenere/Tenere.git
 ```
 
-To get data from the Muse, we first use the Lab Streaming Layer library (previously installed, https://github.com/sccn/labstreaminglayer) to connector to the Muse over Bluetooth LE.  We then have a script that reads the streaming messages from LSL and then converts them to a format appropriate for OSC (http://opensoundcontrol.org/).  The `liblo` python package then takes care of streaming those newly processing sensor stream in OSC format to our show computer running LXStudio.
+To get data from the Muse, we first use the Lab Streaming Layer library (previously installed, https://github.com/sccn/labstreaminglayer) to connect to the Muse over Bluetooth LE.  We then have a script that reads the streaming messages from LSL and then converts them to a format appropriate for OSC (http://opensoundcontrol.org/).  The `liblo` python package then takes care of streaming those newly processing sensor stream in OSC format to our show computer running LXStudio.
 
-To test, let's clone this repository and launch our sensor processing pipeline:
+To test, let's clone this repository and launch our sensor processing pipeline (a big shout-out to @Aimone for creating this):
 ```
 cd ~/SOFTWARE
 git clone https://github.com/treeoftenere/Interactivity
 cd Interactivity
-cd Muse-Sock
+cd muse-sock
 ```
 
 Now using the address we discovered previously, start the script that connects to the Muse (replace `00:55:DA:BO:0B:61` with the address of your Muse Headband):
