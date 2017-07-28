@@ -1,5 +1,5 @@
 # Interactivity and Sensor/Effector integration 
-A set of scripts to integrate sensor/actuator data with LXStudio over OSC for controlling the Tree of Tenere
+A set of scripts to integrate streaming data with LXStudio over OSC for controlling the Tree of Tenere
 
 
 This project aims to provide a reference system and suite of sensor integrations for TENERE,  written mostly in Python.  The initial platform involves the use of a Raspberry Pi (3 model B - tested) to receive streaming raw data from various sensors, including:
