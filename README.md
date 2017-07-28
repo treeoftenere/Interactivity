@@ -85,6 +85,13 @@ cd ~/SOFTWARE
 git clone https://github.com/DexterInd/GrovePi.git
 ```
 
+## Voice control with Jasper
+```
+cd ~/SOFTWARE/Interactivity/voicecontrol
+```
+Please follow the instructions at https://github.com/treeoftenere/Interactivity/voicecontrol
+
+
 ## Muse headband 
 
 * For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 version:
@@ -144,15 +151,7 @@ python muse-sock.py --address 00:55:DA:BO:0B:61
 Then in a second terminal, start our OSC streaming to LXStudio (replace `192.168.0.50` with the IP address of the machine where you are running LXStudio:
 ```
 cd ~/SOFTWARE/Interactivity/muse-sock
-python sockrecv.py --address 192.168.0.50
+python muse-listener.py --oscip 192.168.0.50
 ```
 
 Congratulations, you are now controlling Tenere with your brainwaves!!!!
-
-## Voice control with Jasper
-
-```
-cd ~/SOFTWARE/Interactivity/voicecontrol
-```
-
-Please follow the instructions at https://github.com/treeoftenere/Interactivity/voicecontrol
