@@ -135,7 +135,7 @@ git clone https://github.com/treeoftenere/Tenere.git
 
 To get data from the Muse, we first use the Lab Streaming Layer library (previously installed, https://github.com/sccn/labstreaminglayer) to connect to the Muse over Bluetooth LE.  We then have a script that reads the streaming messages from LSL and then converts them to a format appropriate for OSC (http://opensoundcontrol.org/).  The `liblo` python package then takes care of streaming those newly processing sensor stream in OSC format to our show computer running LXStudio.
 
-To test, let's clone this repository and launch our sensor processing pipeline (a big shout-out to @Aimone for creating this):
+To test, let's clone this repository and launch our sensor processing pipeline (a big shout-out to @brainwaves for creating this):
 ```
 cd ~/SOFTWARE
 git clone https://github.com/treeoftenere/Interactivity
