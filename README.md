@@ -57,7 +57,7 @@ Tenere
 pi@raspberrypi:~/SOFTWARE $
 ```
 
-* Next, let's install the libraries we are going to use and clone any additional repositories (you may not need all of these for your specific setup, this set includes everything for our reference system):
+* Next, let's install the libraries we are going to use and clone any additional repositories (you may not need all of these for your specific setup, this tutorial includes everything for our reference system):
 
 ```
 sudo apt-get -y install vim nano git git-core cmake python-pip python-dev
@@ -80,7 +80,7 @@ sudo python setup.py install
 
 * Install relevant libraries for the Grove Pi expansion board
 ```
-sudo apt-get --yes install libi2c-dev python-serial i2c-tools python-smbus python3-smbus arduino minicom
+sudo apt-get -y install libi2c-dev python-serial i2c-tools python-smbus python3-smbus arduino minicom
 cd ~/SOFTWARE
 git clone https://github.com/DexterInd/GrovePi.git
 ```
@@ -133,7 +133,7 @@ Then clone the lastest version of LXStudio (see more at: https://github.com/tree
 git clone https://github.com/treeoftenere/Tenere.git
 ```
 
-To get data from the Muse, we first use the Lab Streaming Layer library (previously installed, https://github.com/sccn/labstreaminglayer) to connect to the Muse over Bluetooth LE.  We then have a script that reads the streaming messages from LSL and then converts them to a format appropriate for OSC (http://opensoundcontrol.org/).  The `liblo` python package then takes care of streaming those newly processing sensor stream in OSC format to our show computer running LXStudio.
+To get data from the Muse, we first use the Lab Streaming Layer library (previously installed, https://github.com/sccn/labstreaminglayer) to connect to the Muse over Bluetooth LE.  We then have a script that reads the streaming messages from LSL and then converts them to a format appropriate for OSC (http://opensoundcontrol.org/).  The `liblo` python package then takes care of streaming this newly processing sensor stream in OSC format to our show computer running LXStudio.
 
 To test, let's clone this repository and launch our sensor processing pipeline (a big shout-out to @brainwaves for creating this):
 ```
@@ -148,7 +148,7 @@ Now using the address we discovered previously, start the script that connects t
 python muse-sock.py --address 00:55:DA:BO:0B:61
 ```
 
-Then in a second terminal, start our OSC streaming to LXStudio (replace `192.168.0.50` with the IP address of the machine where you are running LXStudio:
+Then in a second terminal, start our OSC streaming to LXStudio (replace `192.168.0.50` with the IP address of the machine where you are running Tenere's LXStudio:
 ```
 cd ~/SOFTWARE/Interactivity/muse-sock
 python muse-listener.py --oscip 192.168.0.50
