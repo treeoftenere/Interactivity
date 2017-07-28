@@ -1,0 +1,9 @@
+#!/bin/bash
+#use like this:  ./muse-reconnect 00:55:DA:B0:32:B1 192.168.1.118 9999
+while [ 1 ]
+do
+	python muse-sock.py --address $1 --host $2 --port $3
+	sleep 2
+done
+
+
