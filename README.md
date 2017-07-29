@@ -87,6 +87,8 @@ git clone https://github.com/DexterInd/GrovePi.git
 cd GrovePi/Script
 sudo chmod +x install.sh
 sudo ./install.sh
+cd ~/SOFTWARE
+https://github.com/initialstate/grovepi-zero.git
 ```
 
 ## Voice control with Jasper
