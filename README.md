@@ -20,6 +20,9 @@ Raspberry Pi specific parts list:
 * USB Microphone (https://kinobo.co.uk/)
 
 
+![TenerePi](/Images/tenere-raspberrypi-reference.png)
+
+
 # Sensor Integration
 The following outlines the installation process for a Raspberry Pi 3 using the latest version of the Raspian image (July 2017):
 
@@ -161,3 +164,9 @@ python muse-listener.py --oscip 192.168.0.50
 ```
 
 Congratulations, you are now controlling Tenere with your brainwaves!!!!
+
+
+
+![Tenere_Muse_LXStudio](/Images/Tenere_Muse-EEG_LXStudio.png)
+
+
