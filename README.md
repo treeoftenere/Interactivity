@@ -20,6 +20,9 @@ Raspberry Pi specific parts list:
 * USB Microphone (https://kinobo.co.uk/)
 
 
+![TenerePi](/Images/tenere-raspberrypi-reference.png)
+
+
 # Sensor Integration
 The following outlines the installation process for a Raspberry Pi 3 using the latest version of the Raspian image (July 2017):
 
