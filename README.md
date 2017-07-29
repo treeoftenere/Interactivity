@@ -154,7 +154,7 @@ Now using the address we discovered previously, start the script that connects t
 python muse-sock.py --address 00:55:DA:BO:0B:61
 ```
 
-Then in a second terminal, start our OSC streaming to LXStudio (replace `192.168.0.50` with the IP address of the machine where you are running Tenere's LXStudio:
+Then in a second terminal, start our script for OSC streaming to LXStudio (replace `192.168.0.50` with the IP address of the machine where you are running Tenere's LXStudio:
 ```
 cd ~/SOFTWARE/Interactivity/muse-sock
 python muse-listener.py --oscip 192.168.0.50
