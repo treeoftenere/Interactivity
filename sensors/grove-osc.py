@@ -5,7 +5,7 @@ import grovepi
 import grove_oled
 from adxl345 import ADXL345
 from optparse import OptionParser
-import thread
+
 
 
 usage = "python sensor-osc.py --oscip 127.0.0.1 --oscport 7878 --with_accel 1 --with_oled 0 --with_pulse 1"
@@ -19,19 +19,12 @@ parser.add_option("-p", "--oscport",
 parser.add_option("-a", "--with_accel", 
                   dest="withAccel", type='int', default=1,
                   help="Is a Grove Accelerometer ADXL345 connected via I2C?")
-			  
-parser.add_option("-O", "--with_oled", 
-                  dest="withOled", type='int', default=0,
-                  help="Is a Grove 96x96 OLED screen connected via I2C?")
-				  
 parser.add_option("-P", "--with_pulse", 
                   dest="withPulse", type='int', default=1,
-                  help="Is a pulse sensor connected to A0?")				  
-				  
-				  
+                  help="Is a pulse sensor connected to A0?")
 parser.add_option("-d", "--debug", 
                   dest="printDebug", type='int', default=0,
-                  help="Print the sensor values to stdout?")				  
+                  help="Print the sensor values to stdout?")
 
 				  
 (options, args) = parser.parse_args()
@@ -43,12 +36,6 @@ if options.withAccel:
 	adxl345 = ADXL345()
 	axes = adxl345.getAxes(True)
 
-if options.withOled:
-	print("starting display")
-	grove_oled.oled_init()
-	grove_oled.oled_clearDisplay()
-	grove_oled.oled_setNormalDisplay()
-	grove_oled.oled_setVerticalMode()
 
 
 analogdata = np.zeros(3)
@@ -56,38 +43,6 @@ digitaldata = np.zeros(1)
 timestamps = np.zeros(3)
 
 
-# This will delay sensor readings, let's put it in a separate thread
-def updateOled(threadName, *args):
-
-	if options.withAccel and options.withOled:	
-
-		while True:
-			time.sleep(1.1) # only update as often as necessary
-			print("x = %.3fG" % ( axes['x'] ))
-
-		        grove_oled.oled_clearDisplay()
-			grove_oled.oled_setTextXY(0,0)
-			grove_oled.oled_putString("x = %.3fG" % (axes['x']))
-			grove_oled.oled_setTextXY(1,0)
-			grove_oled.oled_putString("y = %.3fG" % (axes['y']))
-			grove_oled.oled_setTextXY(2,0)
-			grove_oled.oled_putString("z = %.3fG" % (axes['z']))
-			grove_oled.oled_setTextXY(3,0)
-
-	elif options.withAccel:
-		print("OLED not selected, exiting thread")
-	else:
-		print("thread exiting")
-
-
-			
-# Create OLED handler thread
-try:
-	thread.start_new_thread( updateOled, ("oled", 1) )
-except:
-   print "Error: unable to start thread"			
-
-time.sleep(0.1) 
 			
 			
 while True:
