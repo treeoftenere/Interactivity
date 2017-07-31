@@ -20,7 +20,7 @@ Raspberry Pi specific parts list:
 * USB Microphone (https://kinobo.co.uk/)
 
 
-For those that would just like to Get 'er Done, Here is an Amazon wish list: http://a.co/fIXIPa8 
+For those that would just like to Get 'er Done, Here is an Amazon wish list (Please make sure to change the Filter on the list to show both purchased and unpurchased items): http://a.co/fIXIPa8 
 
 
 ![TenerePi](/Images/tenere-raspberrypi-reference.png)
