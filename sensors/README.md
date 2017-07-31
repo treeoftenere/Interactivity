@@ -23,5 +23,7 @@ For use with the Tenere reference system:
 
 
 If you would also like to use the OLED for a menu system or to display data during debugging, for example, we have provided `grove-oled.py`.  For more information, please try:
-```python grove-oled.py --help```
+```
+python grove-oled.py --help
+```
 
