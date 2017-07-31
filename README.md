@@ -104,6 +104,17 @@ cd ~/SOFTWARE/Interactivity/voicecontrol
 Please follow the instructions at https://github.com/treeoftenere/Interactivity/voicecontrol
 
 
+## Pulse Sensor and other peripherals with the TenerePi
+```
+cd ~/SOFTWARE/Interactivity/sensors
+```
+Please follow the instructions at https://github.com/treeoftenere/Interactivity/sensors
+
+
+
+
+
+
 ## Muse headband 
 
 * For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 (or later) versions:
