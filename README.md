@@ -101,15 +101,14 @@ https://github.com/initialstate/grovepi-zero.git
 ```
 cd ~/SOFTWARE/Interactivity/voicecontrol
 ```
-Please follow the instructions at https://github.com/treeoftenere/Interactivity/voicecontrol
+Please follow the instructions at https://github.com/treeoftenere/Interactivity/tree/master/voicecontrol
 
 
 ## Pulse Sensor and other peripherals with the TenerePi
 ```
 cd ~/SOFTWARE/Interactivity/sensors
 ```
-Please follow the instructions at https://github.com/treeoftenere/Interactivity/sensors
-
+Please follow the instructions at https://github.com/treeoftenere/Interactivity/tree/master/sensors
 
 
 
