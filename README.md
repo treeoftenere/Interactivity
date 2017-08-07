@@ -1,4 +1,4 @@
-# Interactivity and Sensor/Effector integration 
+# Interactivity and Sensor/Effector integration
 A set of scripts to integrate streaming data with LXStudio over OSC for controlling the Tree of Tenere
 
 
@@ -20,7 +20,7 @@ Raspberry Pi specific parts list:
 * USB Microphone (https://kinobo.co.uk/)
 
 
-For those that would just like to Get 'er Done, Here is an Amazon wish list (Please make sure to change the Filter on the list to show both purchased and unpurchased items): http://a.co/fIXIPa8 
+For those that would just like to Get 'er Done, Here is an Amazon wish list (Please make sure to change the Filter on the list to show both purchased and unpurchased items): http://a.co/fIXIPa8
 
 
 ![TenerePi](/Images/tenere-raspberrypi-reference.png)
@@ -114,27 +114,16 @@ Please follow the instructions at https://github.com/treeoftenere/Interactivity/
 
 
 
-## Muse headband 
+## Muse headband
 
 * For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 (or later) versions:
 ```
 sudo apt-get -y install python-liblo python-matplotlib python-numpy python-scipy python3-scipi python-seaborn liblo-tools
-sudo pip install pygatt 
-sudo pip install bitstring 
-sudo pip install pexpect 
-sudo pip install pylsl 
+sudo pip install pygatt
+sudo pip install bitstring
+sudo pip install pexpect
 ```
 
-Unfortunately, there is an error in the latest pylsl package that distributes a library that is compiled for the wrong architecture.  We can fix this with the following:
-
-```
-cd ~/SOFTWARE
-mkdir liblsl
-cd liblsl
-wget http://sccn.ucsd.edu/pub/software/LSL/SDK/liblsl-C-C++-1.11.zip
-unzip liblsl-C-C++-1.11.zip
-sudo cp liblsl-bcm2708.so /usr/local/lib/python2.7/dist-packages/pylsl-1.10.5-py2.7.egg/pylsl/liblsl32.so
-```
 
 Now turn on your Muse and let's figure out its network address
 ```
@@ -146,9 +135,9 @@ You should see something like (please write down the hex address as we will use 
 00:55:DA:BO:0B:61 Muse-OB61
 ```
 
-Now let's get the Muse talking to LXStudio.  This assumes you have the latest version of LXStudio running somewhere on your local network.  That is, we can test the Muse with LXStudio running on the same computer as the Muse is connecting.  However, our preference is to have the Muse stream data to the Raspberry Pi and then have the Pi send this data over a network to a show control computer (typically a Mac or PC) dedicated to running LXStudio. 
+Now let's get the Muse talking to LXStudio.  This assumes you have the latest version of LXStudio running somewhere on your local network.  That is, we can test the Muse with LXStudio running on the same computer as the Muse is connecting.  However, our preference is to have the Muse stream data to the Raspberry Pi and then have the Pi send this data over a network to a show control computer (typically a Mac or PC) dedicated to running LXStudio.
 
-To do this, first grab the latest version of Processing and install for your desired platform (https://processing.org/download/) 
+To do this, first grab the latest version of Processing and install for your desired platform (https://processing.org/download/)
 
 Then clone the lastest version of LXStudio (see more at: https://github.com/treeoftenere/Tenere)
 ```
@@ -179,7 +168,131 @@ python muse-listener.py --oscip 192.168.0.50
 Congratulations, you are now controlling Tenere with your brainwaves!!!!
 
 
-
 ![Tenere_Muse_LXStudio](/Images/Tenere_Muse-EEG_LXStudio.png)
+
+### Setup raspberry pi to connect to a muse on boot
+```
+apt-get install tmux
+```
+Now edit `/etc/rc.local` and add the following line before (`exit 0`):
+
+```
+sudo -u pi bash /home/pi/SOFTWARE/Interactivity/tmux_start.sh
+```
+
+`tmux_start.sh` (In: https://github.com/treeoftenere/Interactivity) looks like this:
+```
+$ cat tmux_start.sh 
+#!/bin/bash
+tmux new-session -d -s "musesock" "/home/pi/SOFTWARE/Interactivity/muse-sock/muse-reconnect 00:55:DA:B0:32:B1 10.0.0.2 9999"
+```
+Replace `00:55:DA:B0:32:B1` with the MAC address of the muse, replace `10.0.0.2` with the IP address of the machine where you are running Tenere's LXStudio, and replace `9999` with the port that `muse-listener.py` is listening to (it is `9999` by default). 
+
+You should now be able to reboot the PI and have it connect to your muse on boot,  and auto-reconnect
+
+If you want to check that the process is running, you can ssh into the Pi from another computer and attach to the tmux session
+
+```
+Starfox:~ chris$ ssh pi@10.0.0.12
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Aug  6 08:21:22 2017 from 10.0.0.2
+pi@raspberrypi:~ $ tmux attach
+```
+If you have a muse connected,  you tmux session will have debug output like this:
+```
+('waited: 0.031495', 'dataloss: 0.0', 'avgloss: 0.000000')
+('waited: 0.001427', 'dataloss: 0.0', 'avgloss: 0.000000')
+[musesock] 0:bash*                        "raspberrypi" 15:43 07-Aug-17
+```
+
+Detach from the tmux session by pressing `^b` then `d`
+
+### Setting up multiple Muses
+Connect Multiple muses to Tenere by setting up one Raspberry Pi per muse. 
+#### On each Raspberry Pi
+Edit `tmux_start.sh` for each of the Pi's to connect to a different muse,  and send to different Ports on the Tenere LXstudio machine.   For example, `Pi[0]` would send to port `9910` on LX machine, `Pi[1]` would send to `9911`, and so on.
+
+#### On the Tenere LX studio host computer
+Run in separate terminal sessions:
+For `Pi[0]`:
+```
+python muse-listener.py --port 9910 --oscip 127.0.0.1 --oscport 7810
+```
+For `Pi[1]`:
+```
+python muse-listener.py --port 9911 --oscip 127.0.0.1 --oscport 7811
+```
+And so on...
+
+### Tenere LXstudio
+Tenere LXstudio will listen for Muse inputs with a different port (sequentially numbered) for each muse.  One port per muse. 
+(`commit b0cd179031c5277de0cb7bf161bf4b4e2f530473`)
+
+Configure Tenere LXstudio to Listen for Multiple Muse inputs
+Looks at Lines `36:41` in `Tenere.pde`
+```
+//Muliple Muses
+//each muse sends to a differnt port numbered sequentially starting with musePortOffset
+Muse[] muse;
+UIMuse[] uiMuse;
+int num_muses = 3;
+int musePortOffset=7810;
+```
+
+Now when you run Tenere.pde,  3 muses will appear as a collapsible section undernead `Sensors`.   The Muses are Named with the Port associated with them.  
+
+There are three sets of sliders for each Muse:  
+* The first four are the correspond to the 4 EEG sensors of the Muse (ordered as:  Back Left, Front Left, Front Right, Back Right).  This is Raw EEG data updated at 256Hz, scaled to be (0-1) .  Its very hard to use Raw EEG,  Signal procesing for these will be added soon.   
+* The next three are Accelerometer,  one for each axis.  Updated at 50Hz, scaled to (0,1)
+* The last three are Gyroscope,  one for eah axis.  Updated at 50Hz, scaled (0,1)
+
+(`default.lxp` in `commit b0cd179031c5277de0cb7bf161bf4b4e2f530473` will show the muse gyro output from 3 muses on the Tree)
+
+### Visual feedback of connected muse using Pimironi Blinkt on the Pi
+
+Install liblo and pylibo to send and receive OSC messages on the Pi
+
+```
+sudo apt-get install liblo-dev cython
+sudo pip install pyliblo
+```
+
+Mount the Blinkt to the PI, and run:
+```
+python museStatus.py
+```
+Now in another terminal session on the Pi, run the muse connection script:
+```
+./muse-reconnect-status 00:55:DA:B0:32:B1 192.168.1.118 9999
+```
+
+
+### MuseLSL
+LSL (Lab Streaming Layer) is a standard for EEG research.  
+Follow these instrucations to get muselsl working on the Pi
+so that you can connect to a muse and send the data out using LSL  
+```
+sudo pip install pylsl
+```
+
+Unfortunately, there is an error in the latest pylsl package that distributes a library that is compiled for the wrong architecture.  We can fix this with the following:
+
+```
+cd ~/SOFTWARE
+mkdir liblsl
+cd liblsl
+wget http://sccn.ucsd.edu/pub/software/LSL/SDK/liblsl-C-C++-1.11.zip
+unzip liblsl-C-C++-1.11.zip
+sudo cp liblsl-bcm2708.so /usr/local/lib/python2.7/dist-packages/pylsl-1.10.5-py2.7.egg/pylsl/liblsl32.so
+```
+
+Get muselsl from https://github.com/alexandrebarachant/muse-lsl and follow alexandre's instructions.
+
 
 

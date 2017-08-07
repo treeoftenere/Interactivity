@@ -1,0 +1,10 @@
+#!/bin/bash
+#use like this:  ./muse-reconnect-status 00:55:DA:B0:32:B1 192.168.1.118 9999
+while [ 1 ]
+do
+	python muse-sock-osc-status.py --address $1 --host $2 --port $3
+    python send_osc.py 1234 /muse-reconnect
+	sleep 2
+done
+
+

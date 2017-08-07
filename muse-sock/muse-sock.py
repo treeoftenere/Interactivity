@@ -61,5 +61,5 @@ while 1:
     except:
         break
 
-muse.stop()
-muse.disconnect()
+#muse.stop()
+#muse.disconnect()
