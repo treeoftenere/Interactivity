@@ -295,4 +295,9 @@ sudo cp liblsl-bcm2708.so /usr/local/lib/python2.7/dist-packages/pylsl-1.10.5-py
 Get muselsl from https://github.com/alexandrebarachant/muse-lsl and follow alexandre's instructions.
 
 
+## Muse headband signal processing
+Signal processing scripts that receive muse data and create useful signals to use in Tenere LXstudio
+
+Check out: 
+[/muse-sigproc/README.md](/muse-sigproc/README.md)
 

@@ -1,0 +1,106 @@
+name: musetools
+channels:
+- defaults
+dependencies:
+- alabaster=0.7.10=py35_0
+- appnope=0.1.0=py35_0
+- astroid=1.4.9=py35_0
+- babel=2.4.0=py35_0
+- bleach=1.5.0=py35_0
+- chardet=3.0.3=py35_0
+- decorator=4.0.11=py35_0
+- docutils=0.13.1=py35_0
+- entrypoints=0.2.2=py35_1
+- html5lib=0.999=py35_0
+- icu=54.1=0
+- imagesize=0.7.1=py35_0
+- ipykernel=4.6.1=py35_0
+- ipython=6.0.0=py35_1
+- ipython_genutils=0.2.0=py35_0
+- isort=4.2.5=py35_0
+- jedi=0.10.2=py35_2
+- jinja2=2.9.6=py35_0
+- jsonschema=2.6.0=py35_0
+- jupyter_client=5.0.1=py35_0
+- jupyter_core=4.3.0=py35_0
+- lazy-object-proxy=1.2.2=py35_0
+- markupsafe=0.23=py35_2
+- mistune=0.7.4=py35_0
+- mkl=2017.0.1=0
+- nbconvert=5.1.1=py35_0
+- nbformat=4.3.0=py35_0
+- numpy=1.12.1=py35_0
+- numpydoc=0.6.0=py35_0
+- openssl=1.0.2k=2
+- pandocfilters=1.4.1=py35_0
+- path.py=10.3.1=py35_0
+- pep8=1.7.0=py35_0
+- pexpect=4.2.1=py35_0
+- pickleshare=0.7.4=py35_0
+- pip=9.0.1=py35_1
+- prompt_toolkit=1.0.14=py35_0
+- psutil=5.2.2=py35_0
+- ptyprocess=0.5.1=py35_0
+- pyflakes=1.5.0=py35_0
+- pygments=2.2.0=py35_0
+- pylint=1.6.4=py35_1
+- pyqt=5.6.0=py35_2
+- python=3.5.3=1
+- python-dateutil=2.6.0=py35_0
+- python.app=1.2=py35_4
+- pytz=2017.2=py35_0
+- pyzmq=16.0.2=py35_0
+- qt=5.6.2=2
+- qtawesome=0.4.4=py35_0
+- qtconsole=4.3.0=py35_0
+- qtpy=1.2.1=py35_0
+- readline=6.2=2
+- requests=2.14.2=py35_0
+- rope=0.9.4=py35_1
+- scipy=0.19.0=np112py35_0
+- setuptools=27.2.0=py35_0
+- simplegeneric=0.8.1=py35_1
+- sip=4.18=py35_0
+- six=1.10.0=py35_0
+- snowballstemmer=1.2.1=py35_0
+- sphinx=1.5.6=py35_0
+- spyder=3.1.4=py35_0
+- sqlite=3.13.0=0
+- testpath=0.3=py35_0
+- tk=8.5.18=0
+- tornado=4.5.1=py35_0
+- traitlets=4.3.2=py35_0
+- wcwidth=0.1.7=py35_0
+- wheel=0.29.0=py35_0
+- wrapt=1.10.10=py35_0
+- xz=5.2.2=1
+- zlib=1.2.8=3
+- pip:
+  - appdirs==1.4.3
+  - bitstring==3.1.5
+  - cycler==0.10.0
+  - cython==0.25.2
+  - emd-signal==0.2.2
+  - enum34==1.1.6
+  - future==0.16.0
+  - ipython-genutils==0.2.0
+  - joblib==0.11
+  - jupyter-client==5.0.1
+  - jupyter-core==4.3.0
+  - matplotlib==2.0.2
+  - mne==0.14.1
+  - packaging==16.8
+  - pandas==0.20.1
+  - prompt-toolkit==1.0.14
+  - protobuf==3.1.0
+  - pygatt==3.1.1
+  - pyliblo==0.10.0
+  - pylsl==1.10.5
+  - pyopengl==3.1.0
+  - pyparsing==2.2.0
+  - pyriemann==0.2.4
+  - pyserial==3.3
+  - python-osc==1.6.3
+  - pywavelets==0.5.2
+  - rope-py3k==0.9.4.post1
+  - scikit-learn==0.18.1
