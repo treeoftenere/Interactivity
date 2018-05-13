@@ -122,7 +122,7 @@ Please follow the instructions at https://github.com/treeoftenere/Interactivity/
 sudo apt-get -y install python-liblo python-matplotlib python-numpy python-scipy python3-scipi python-seaborn liblo-tools
 pip install pygatt
 pip install bitstring
-sudo pip install pexpect
+pip install pexpect
 ```
 
 
