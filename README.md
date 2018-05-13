@@ -93,7 +93,7 @@ git clone https://github.com/DexterInd/GrovePi.git
 cd GrovePi/Script
 sudo chmod +x install.sh
 sudo ./install.sh
-sudo pip install grovepi
+pip install grovepi
 cd ~/SOFTWARE
 git clone https://github.com/initialstate/grovepi-zero.git
 ```
@@ -120,8 +120,8 @@ Please follow the instructions at https://github.com/treeoftenere/Interactivity/
 * For Muse Integration, several libraries are required.  Please note, this setup is only valid for the Muse 2016 (or later) versions:
 ```
 sudo apt-get -y install python-liblo python-matplotlib python-numpy python-scipy python3-scipi python-seaborn liblo-tools
-sudo pip install pygatt
-sudo pip install bitstring
+pip install pygatt
+pip install bitstring
 sudo pip install pexpect
 ```
 
